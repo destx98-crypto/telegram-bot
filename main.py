@@ -4,7 +4,7 @@ import asyncio
 import sqlite3
 import random
 
-TOKEN = "BU_YERGA_YANGI_TOKENNI_QOY"
+TOKEN = "8456071403:AAGLhUJfuVV5gB8V-akAawWd8xNrcO_e0yU"
 ADMIN_ID = 5620975465
 
 bot = Bot(token=TOKEN)
