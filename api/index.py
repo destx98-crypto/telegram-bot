@@ -2,7 +2,8 @@ from http.server import BaseHTTPRequestHandler
 import json
 import requests
 
-TOKEN = "TOKENINGNI_QOY"
+TOKEN = "8456071403:AAGLhUJfuVV5gB8V-akAawWd8xNrcO_e0yU"
+ADMIN_ID = 5620975465
 
 global_count = 0
 balances = {}
@@ -30,10 +31,16 @@ class handler(BaseHTTPRequestHandler):
             # START
             if text == "/start":
                 balances.setdefault(chat_id, 0)
-                send(chat_id, f"👋 Xush kelibsiz!\n💰 Balans: {balances[chat_id]} so‘m\n\n🎮 O‘yin uchun 🎮 yozing")
+                send(chat_id,
+                     f"👋 Xush kelibsiz!\n\n"
+                     f"💰 Balans: {balances[chat_id]} so‘m\n\n"
+                     f"🎮 O‘ynash uchun 🎮 yozing")
 
             # ADMIN ADD
             elif text.startswith("/add"):
+                if chat_id != ADMIN_ID:
+                    return
+
                 try:
                     _, uid, amount = text.split()
                     uid = int(uid)
@@ -45,9 +52,9 @@ class handler(BaseHTTPRequestHandler):
 
             # BALANS
             elif text.lower() == "balans":
-                send(chat_id, f"💰 Sizning balans: {balances.get(chat_id,0)} so‘m")
+                send(chat_id, f"💰 Balans: {balances.get(chat_id,0)} so‘m")
 
-            # O‘YIN BOSHLASH
+            # O‘YIN
             elif text == "🎮":
                 if balances.get(chat_id, 0) < 3000:
                     send(chat_id, "❌ Balans yetarli emas")
@@ -60,9 +67,14 @@ class handler(BaseHTTPRequestHandler):
                 global_count += 1
 
                 if global_count % 5 == 0:
-                    send(chat_id, "🎉 TABRIKLAYMAN! Siz 60 UC yutdingiz!\n\n📩 ID yuboring")
+                    send(chat_id,
+                         "🎉 TABRIKLAYMIZ!\n\n"
+                         "🎁 Siz 60 UC yutdingiz!\n\n"
+                         "📩 ID yuboring")
                 else:
-                    send(chat_id, "❌ Yutqazdingiz\nYana urinib ko‘ring!")
+                    send(chat_id,
+                         "❌ Yutuq yo‘q\n\n"
+                         "🔁 Yana urinib ko‘ring")
 
         self.send_response(200)
         self.end_headers()
