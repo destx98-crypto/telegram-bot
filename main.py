@@ -8,8 +8,8 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.client.default import DefaultBotProperties
 
 # ========== SOZLAMALAR ==========
-BOT_TOKEN = "YANGI_TOKEN_OLING"  # @BotFather dan oling
-GROUP_ID = -1001234567890  # Guruh ID si
+BOT_TOKEN = "8786129118:AAFTOi93qcIhtuHiS3gdE2PPoPcOHP2dvmA"  # @BotFather dan oling
+GROUP_ID = -1003917578629  # Guruh ID si
 ADMIN_IDS = [5620975465]  # Sizning ID
 
 bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode="HTML"))
