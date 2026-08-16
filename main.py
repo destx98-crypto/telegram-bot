@@ -705,6 +705,26 @@ async def admin_edit_menu(callback: types.CallbackQuery, state: FSMContext):
     await callback.message.edit_text("✏️ Qaysi maydonni tahrirlaysiz?", reply_markup=kb)
     await TahrirState.maydon.set()
 
+
+    # ========== KEEP ALIVE ==========
+from threading import Thread
+from http.server import HTTPServer, BaseHTTPRequestHandler
+
+class KeepAlive(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"OK")
+    def log_message(self, format, *args):
+        pass
+
+def run_server():
+    server = HTTPServer(("0.0.0.0", 8080), KeepAlive)
+    server.serve_forever()
+
+Thread(target=run_server, daemon=True).start()
+
+
 # ========== MAIN ==========
 if __name__ == "__main__":
     print("🤖 Bot ishga tushdi!")
